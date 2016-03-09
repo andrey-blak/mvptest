@@ -17,3 +17,11 @@
 #}
 
 -dontobfuscate
+
+## Retrofit
+# http://square.github.io/retrofit/
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+-dontwarn okio.**
