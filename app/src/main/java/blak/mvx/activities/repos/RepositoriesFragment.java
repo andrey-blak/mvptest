@@ -3,15 +3,13 @@ package blak.mvx.activities.repos;
 import blak.mvx.App;
 import blak.mvx.R;
 import blak.mvx.adapters.RepositoryAdapter;
-import blak.mvx.model.GitHub;
 import blak.mvx.model.dto.Repository;
 import blak.mvx.util.ViewUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Response;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,9 +18,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
-import java.io.IOException;
-import java.util.List;
 
 public class RepositoriesFragment extends Fragment {
     private static final String USER = "andrey-blak";
@@ -72,33 +67,20 @@ public class RepositoriesFragment extends Fragment {
 
     private void loadRepositories() {
         showProgress();
-        AsyncTask<Void, Void, List<Repository>> task = new AsyncTask<Void, Void, List<Repository>>() {
-            @Override
-            protected List<Repository> doInBackground(Void... params) {
-                GitHub api = App.getApi();
-                Call<List<Repository>> call = api.getRepositories(USER);
-                try {
-                    Response<List<Repository>> response = call.execute();
-                    List<Repository> repositories = response.body();
-                    return repositories;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
 
-            @Override
-            protected void onPostExecute(List<Repository> repositories) {
-                hideProgress();
-                mAdapter.setItems(repositories);
-                mAdapter.notifyDataSetChanged();
+        App.getApi().getRepositories(USER)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(Throwable::printStackTrace)
+                .subscribe(repositories -> {
+                    hideProgress();
+                    mAdapter.setItems(repositories);
+                    mAdapter.notifyDataSetChanged();
 
-                Log.v("@@@", "Repositories");
-                for (Repository repository : repositories) {
-                    Log.v("@@@", repository.fulName);
-                }
-            }
-        };
-        task.execute();
+                    Log.v("@@@", "Repositories");
+                    for (Repository repository : repositories) {
+                        Log.v("@@@", repository.fulName);
+                    }
+                });
     }
 }

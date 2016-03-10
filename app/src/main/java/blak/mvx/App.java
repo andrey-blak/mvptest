@@ -1,8 +1,9 @@
 package blak.mvx;
 
 import blak.mvx.model.GitHub;
-import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.app.Application;
 
@@ -29,6 +30,7 @@ public class App extends Application {
     private void init() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Config.BASE_URL)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         mApi = retrofit.create(GitHub.class);
