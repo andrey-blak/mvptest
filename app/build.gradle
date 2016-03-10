@@ -47,6 +47,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:support-annotations:23.1.1'
 
+    // android common
+    compile 'com.jakewharton:butterknife:7.0.1'
+
     // Rest
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
