@@ -5,6 +5,7 @@ import blak.mvx.R;
 import blak.mvx.adapters.RepositoryAdapter;
 import blak.mvx.model.GitHub;
 import blak.mvx.model.dto.Repository;
+import blak.mvx.util.ViewUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -28,6 +29,9 @@ public class RepositoriesFragment extends Fragment {
 
     @Bind(R.id.mvx__repositories_list)
     ListView mRepositoriesListView;
+
+    @Bind(R.id.mvx__repositories_progress)
+    View mProgressView;
 
     private RepositoryAdapter mAdapter;
 
@@ -58,7 +62,16 @@ public class RepositoriesFragment extends Fragment {
         mRepositoriesListView.setAdapter(mAdapter);
     }
 
+    private void showProgress() {
+        ViewUtils.show(mProgressView);
+    }
+
+    private void hideProgress() {
+        ViewUtils.hide(mProgressView);
+    }
+
     private void loadRepositories() {
+        showProgress();
         AsyncTask<Void, Void, List<Repository>> task = new AsyncTask<Void, Void, List<Repository>>() {
             @Override
             protected List<Repository> doInBackground(Void... params) {
@@ -76,6 +89,7 @@ public class RepositoriesFragment extends Fragment {
 
             @Override
             protected void onPostExecute(List<Repository> repositories) {
+                hideProgress();
                 mAdapter.setItems(repositories);
                 mAdapter.notifyDataSetChanged();
 
