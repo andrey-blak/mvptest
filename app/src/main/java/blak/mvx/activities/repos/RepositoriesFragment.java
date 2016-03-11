@@ -23,12 +23,12 @@ public class RepositoriesFragment extends Fragment {
     private static final String USER = "andrey-blak";
 
     @Bind(R.id.mvx__repositories_list)
-    ListView mRepositoriesListView;
+    ListView repositoriesListView;
 
     @Bind(R.id.mvx__repositories_progress)
-    View mProgressView;
+    View progressView;
 
-    private RepositoryAdapter mAdapter;
+    private RepositoryAdapter adapter;
 
     public static RepositoriesFragment newInstance() {
         Bundle args = new Bundle();
@@ -53,16 +53,16 @@ public class RepositoriesFragment extends Fragment {
     }
 
     private void initGui() {
-        mAdapter = new RepositoryAdapter();
-        mRepositoriesListView.setAdapter(mAdapter);
+        adapter = new RepositoryAdapter();
+        repositoriesListView.setAdapter(adapter);
     }
 
     private void showProgress() {
-        ViewUtils.show(mProgressView);
+        ViewUtils.show(progressView);
     }
 
     private void hideProgress() {
-        ViewUtils.hide(mProgressView);
+        ViewUtils.hide(progressView);
     }
 
     private void loadRepositories() {
@@ -74,8 +74,8 @@ public class RepositoriesFragment extends Fragment {
                 .doOnError(Throwable::printStackTrace)
                 .subscribe(repositories -> {
                     hideProgress();
-                    mAdapter.setItems(repositories);
-                    mAdapter.notifyDataSetChanged();
+                    adapter.setItems(repositories);
+                    adapter.notifyDataSetChanged();
 
                     Log.v("@@@", "Repositories");
                     for (Repository repository : repositories) {

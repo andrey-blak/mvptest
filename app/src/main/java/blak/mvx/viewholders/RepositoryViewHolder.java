@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class RepositoryViewHolder implements ViewHolder<Repository> {
     @Bind(android.R.id.text1)
-    TextView mNameView;
+    TextView nameView;
 
     @Override
     public int getLayoutResourceId() {
@@ -24,6 +24,6 @@ public class RepositoryViewHolder implements ViewHolder<Repository> {
 
     @Override
     public void bind(Repository repository) {
-        mNameView.setText(repository.fulName);
+        nameView.setText(repository.fulName);
     }
 }

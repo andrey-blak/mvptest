@@ -13,24 +13,24 @@ import java.util.Collection;
 import java.util.List;
 
 public abstract class HolderAdapter<Item> extends BaseAdapter {
-    private final List<Item> mItems;
+    private final List<Item> items;
 
     public HolderAdapter() {
         this(new ArrayList<Item>());
     }
 
     public HolderAdapter(List<Item> items) {
-        mItems = items;
+        this.items = items;
     }
 
     @Override
     public int getCount() {
-        return mItems.size();
+        return items.size();
     }
 
     @Override
     public Item getItem(int position) {
-        return mItems.get(position);
+        return items.get(position);
     }
 
     @Override
@@ -39,12 +39,12 @@ public abstract class HolderAdapter<Item> extends BaseAdapter {
     }
 
     public void setItems(@Nullable Collection<Item> items) {
-        mItems.clear();
-        CollectionUtils.addAll(mItems, items);
+        this.items.clear();
+        CollectionUtils.addAll(this.items, items);
     }
 
     protected List<Item> getItems() {
-        return mItems;
+        return items;
     }
 
     @Override

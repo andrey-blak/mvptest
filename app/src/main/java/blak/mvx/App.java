@@ -8,23 +8,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import android.app.Application;
 
 public class App extends Application {
-    private static App sInstance;
+    private static App instance;
 
-    private GitHub mApi;
+    private GitHub api;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sInstance = this;
+        instance = this;
         init();
     }
 
     public static App getInstance() {
-        return sInstance;
+        return instance;
     }
 
     public static GitHub getApi() {
-        return sInstance.mApi;
+        return instance.api;
     }
 
     private void init() {
@@ -33,6 +33,6 @@ public class App extends Application {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        mApi = retrofit.create(GitHub.class);
+        api = retrofit.create(GitHub.class);
     }
 }
