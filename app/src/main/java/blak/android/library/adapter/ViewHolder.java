@@ -1,4 +1,4 @@
-package blak.mvx.adapter;
+package blak.android.library.adapter;
 
 import android.support.annotation.LayoutRes;
 import android.view.View;

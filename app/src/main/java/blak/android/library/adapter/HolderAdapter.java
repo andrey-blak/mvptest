@@ -1,7 +1,6 @@
-package blak.mvx.adapter;
+package blak.android.library.adapter;
 
-import blak.mvx.util.AdapterUtils;
-import blak.mvx.util.CollectionUtils;
+import blak.java.library.util.CollectionUtils;
 
 import android.support.annotation.Nullable;
 import android.view.View;

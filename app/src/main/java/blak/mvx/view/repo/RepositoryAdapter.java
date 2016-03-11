@@ -1,9 +1,8 @@
-package blak.mvx.adapters;
+package blak.mvx.view.repo;
 
-import blak.mvx.adapter.HolderAdapter;
-import blak.mvx.adapter.ViewHolder;
+import blak.android.library.adapter.HolderAdapter;
+import blak.android.library.adapter.ViewHolder;
 import blak.mvx.model.dto.Repository;
-import blak.mvx.viewholders.RepositoryViewHolder;
 
 public class RepositoryAdapter extends HolderAdapter<Repository> {
     @Override

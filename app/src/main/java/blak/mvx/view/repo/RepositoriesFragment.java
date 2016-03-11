@@ -1,27 +1,24 @@
-package blak.mvx.activities.repos;
+package blak.mvx.view.repo;
 
-import blak.mvx.App;
+import blak.android.library.util.ViewUtils;
 import blak.mvx.R;
-import blak.mvx.adapters.RepositoryAdapter;
 import blak.mvx.model.dto.Repository;
-import blak.mvx.util.ViewUtils;
+import blak.mvx.presenter.repo.IRepositoriesPresenter;
+import blak.mvx.presenter.repo.RepositoriesPresenter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-public class RepositoriesFragment extends Fragment {
-    private static final String USER = "andrey-blak";
+import java.util.List;
 
+public class RepositoriesFragment extends Fragment implements IRepositoriesView {
     @Bind(R.id.mvx__repositories_list)
     ListView repositoriesListView;
 
@@ -29,6 +26,7 @@ public class RepositoriesFragment extends Fragment {
     View progressView;
 
     private RepositoryAdapter adapter;
+    private IRepositoriesPresenter presenter;
 
     public static RepositoriesFragment newInstance() {
         Bundle args = new Bundle();
@@ -43,13 +41,36 @@ public class RepositoriesFragment extends Fragment {
         View view = inflater.inflate(R.layout.mvx__repositories, container, false);
         ButterKnife.bind(this, view);
         initGui();
+        initPresenter();
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        loadRepositories();
+        presenter.loadRepositories();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.detachView();
+    }
+
+    @Override
+    public void onLoadingStarted() {
+        ViewUtils.show(progressView);
+    }
+
+    @Override
+    public void onLoadingFinished() {
+        ViewUtils.hide(progressView);
+    }
+
+    @Override
+    public void showRepositories(List<Repository> repositories) {
+        adapter.setItems(repositories);
+        adapter.notifyDataSetChanged();
     }
 
     private void initGui() {
@@ -57,30 +78,8 @@ public class RepositoriesFragment extends Fragment {
         repositoriesListView.setAdapter(adapter);
     }
 
-    private void showProgress() {
-        ViewUtils.show(progressView);
-    }
-
-    private void hideProgress() {
-        ViewUtils.hide(progressView);
-    }
-
-    private void loadRepositories() {
-        showProgress();
-
-        App.getApi().getRepositories(USER)
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(Throwable::printStackTrace)
-                .subscribe(repositories -> {
-                    hideProgress();
-                    adapter.setItems(repositories);
-                    adapter.notifyDataSetChanged();
-
-                    Log.v("@@@", "Repositories");
-                    for (Repository repository : repositories) {
-                        Log.v("@@@", repository.fulName);
-                    }
-                });
+    private void initPresenter() {
+        presenter = new RepositoriesPresenter();
+        presenter.attachView(this);
     }
 }

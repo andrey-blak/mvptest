@@ -1,7 +1,6 @@
-package blak.mvx.util;
+package blak.android.library.adapter;
 
 import blak.mvx.R;
-import blak.mvx.adapter.ViewHolder;
 
 import android.content.Context;
 import android.view.LayoutInflater;

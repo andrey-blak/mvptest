@@ -1,7 +1,7 @@
-package blak.mvx.activities.repos;
+package blak.mvx.activities;
 
 import blak.mvx.R;
-import blak.mvx.activities.repos.RepositoriesFragment;
+import blak.mvx.view.repo.RepositoriesFragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

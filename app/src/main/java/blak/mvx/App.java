@@ -1,16 +1,14 @@
 package blak.mvx;
 
-import blak.mvx.model.GitHub;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import blak.mvx.model.GithubModel;
+import blak.mvx.model.IModel;
 
 import android.app.Application;
 
 public class App extends Application {
     private static App instance;
 
-    private GitHub api;
+    private IModel model;
 
     @Override
     public void onCreate() {
@@ -23,16 +21,11 @@ public class App extends Application {
         return instance;
     }
 
-    public static GitHub getApi() {
-        return instance.api;
+    public static IModel getModel() {
+        return instance.model;
     }
 
     private void init() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Config.BASE_URL)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        api = retrofit.create(GitHub.class);
+        model = new GithubModel();
     }
 }

@@ -1,6 +1,6 @@
-package blak.mvx.viewholders;
+package blak.mvx.view.repo;
 
-import blak.mvx.adapter.ViewHolder;
+import blak.android.library.adapter.ViewHolder;
 import blak.mvx.model.dto.Repository;
 import butterknife.Bind;
 import butterknife.ButterKnife;

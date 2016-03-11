@@ -1,4 +1,4 @@
-package blak.mvx.util;
+package blak.android.library.util;
 
 import android.view.View;
 

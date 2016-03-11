@@ -1,4 +1,4 @@
-package blak.mvx.util;
+package blak.java.library.util;
 
 import android.support.annotation.Nullable;
 
