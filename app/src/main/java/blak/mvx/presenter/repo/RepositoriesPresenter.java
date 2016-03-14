@@ -1,6 +1,8 @@
 package blak.mvx.presenter.repo;
 
+import blak.mvx.MainComponent;
 import blak.mvx.App;
+import blak.mvx.model.IModel;
 import blak.mvx.model.dto.Repository;
 import blak.mvx.view.repo.IRepositoriesView;
 import rx.android.schedulers.AndroidSchedulers;
@@ -27,7 +29,9 @@ public class RepositoriesPresenter implements IRepositoriesPresenter {
     public void loadRepositories() {
         view.onLoadingStarted();
 
-        App.getModel().getRepositories(USER)
+        MainComponent component = App.getComponent();
+        IModel model = component.getModel();
+        model.getRepositories(USER)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(Throwable::printStackTrace)

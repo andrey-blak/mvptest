@@ -1,14 +1,11 @@
 package blak.mvx;
 
-import blak.mvx.model.GithubModel;
-import blak.mvx.model.IModel;
-
 import android.app.Application;
 
 public class App extends Application {
     private static App instance;
 
-    private IModel model;
+    private MainComponent component;
 
     @Override
     public void onCreate() {
@@ -21,11 +18,11 @@ public class App extends Application {
         return instance;
     }
 
-    public static IModel getModel() {
-        return instance.model;
+    public static MainComponent getComponent() {
+        return instance.component;
     }
 
     private void init() {
-        model = new GithubModel();
+        component = DaggerMainComponent.create();
     }
 }
