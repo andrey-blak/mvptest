@@ -1,6 +1,6 @@
 package blak.mvx.presenter.repo;
 
-import blak.mvx.MainComponent;
+import blak.mvx.di.MainComponent;
 import blak.mvx.App;
 import blak.mvx.model.IModel;
 import blak.mvx.model.dto.Repository;

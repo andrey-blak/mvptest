@@ -7,7 +7,7 @@ import rx.Observable;
 
 import java.util.List;
 
-public interface GitHub {
+public interface GithubApi {
     @GET("users/{user}/repos")
     Observable<List<Repository>> getRepositories(@Path("user") String user);
 }

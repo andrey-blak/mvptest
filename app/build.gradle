@@ -19,7 +19,7 @@ repositories {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '23.0.2'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -27,11 +27,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "blak.mvx"
+        applicationId 'blak.mvx'
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName '1.0'
     }
     buildTypes {
         release {
@@ -70,4 +70,9 @@ dependencies {
     apt 'com.google.dagger:dagger-compiler:2.0.2'
     compile 'com.google.dagger:dagger:2.0.2'
     provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    // Test
+    testApt 'com.google.dagger:dagger-compiler:2.0.2'
+    testCompile 'org.robolectric:robolectric:3.0'
+    testCompile 'org.mockito:mockito-core:1.10.19'
 }

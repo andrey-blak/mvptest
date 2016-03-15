@@ -1,5 +1,8 @@
 package blak.mvx;
 
+import blak.mvx.di.DaggerMainComponent;
+import blak.mvx.di.MainComponent;
+
 import android.app.Application;
 
 public class App extends Application {
@@ -23,6 +26,10 @@ public class App extends Application {
     }
 
     private void init() {
-        component = DaggerMainComponent.create();
+        component = buildComponent();
+    }
+
+    protected MainComponent buildComponent() {
+        return DaggerMainComponent.create();
     }
 }
