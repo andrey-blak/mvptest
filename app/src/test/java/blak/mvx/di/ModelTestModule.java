@@ -8,10 +8,9 @@ import org.mockito.Mockito;
 import javax.inject.Singleton;
 
 @Module
-public class ModelTestModule extends ModelModule {
-    @Override
-    @Singleton
+public class ModelTestModule {
     @Provides
+    @Singleton
     public IModel provideModel() {
         return Mockito.mock(IModel.class);
     }

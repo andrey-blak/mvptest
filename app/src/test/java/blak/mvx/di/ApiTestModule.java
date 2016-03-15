@@ -8,8 +8,7 @@ import org.mockito.Mockito;
 import javax.inject.Singleton;
 
 @Module
-public class ApiTestModule extends ApiModule {
-    @Override
+public class ApiTestModule {
     @Provides
     @Singleton
     public GithubApi provideApi() {
