@@ -1,14 +1,14 @@
 package blak.mvx.presenter.repo;
 
-import blak.mvx.di.MainComponent;
+import blak.android.library.log.Log;
+import blak.android.library.log.LoggerType;
 import blak.mvx.App;
+import blak.mvx.di.MainComponent;
 import blak.mvx.model.IModel;
 import blak.mvx.model.dto.Repository;
 import blak.mvx.view.repo.IRepositoriesView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
-import android.util.Log;
 
 public class RepositoriesPresenter implements IRepositoriesPresenter {
     private static final String USER = "andrey-blak";
@@ -36,9 +36,10 @@ public class RepositoriesPresenter implements IRepositoriesPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(Throwable::printStackTrace)
                 .subscribe(repositories -> {
-                    Log.v("@@@", "Repositories");
+                    Log.logger(LoggerType.LOGCAT).trace("Repositories");
+
                     for (Repository repository : repositories) {
-                        Log.v("@@@", repository.fulName);
+                        Log.logger(LoggerType.LOGCAT).trace("{}", repository.fulName);
                     }
 
                     view.onLoadingFinished();

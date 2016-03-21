@@ -1,5 +1,6 @@
 package blak.mvx;
 
+import blak.android.library.log.Log;
 import blak.mvx.di.DaggerMainComponent;
 import blak.mvx.di.MainComponent;
 
@@ -27,6 +28,7 @@ public class App extends Application {
 
     private void init() {
         component = buildComponent();
+        Log.init();
     }
 
     protected MainComponent buildComponent() {

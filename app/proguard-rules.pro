@@ -38,3 +38,6 @@
 
 ## RxAndroid
 -dontwarn sun.misc.Unsafe
+
+## Logback
+-dontwarn ch.qos.logback.core.net.*
