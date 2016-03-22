@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import android.support.annotation.CallSuper;
+
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class,
         application = TestApp.class,
@@ -13,6 +15,7 @@ import org.robolectric.annotation.Config;
 public abstract class BaseTest {
     protected TestComponent component;
 
+    @CallSuper
     @Before
     public void setUp() {
         component = (TestComponent) App.getComponent();

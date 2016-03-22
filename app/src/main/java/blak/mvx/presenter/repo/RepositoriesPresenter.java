@@ -9,6 +9,8 @@ import blak.mvx.model.IModel;
 import blak.mvx.model.dto.Repository;
 import blak.mvx.view.repo.IRepositoriesView;
 
+import java.util.Collections;
+
 public class RepositoriesPresenter implements IRepositoriesPresenter {
     private static final String USER = "andrey-blak";
 
@@ -32,7 +34,8 @@ public class RepositoriesPresenter implements IRepositoriesPresenter {
         IModel model = component.getModel();
         model.getRepositories(USER)
                 .compose(RxUtils.observableTransformer())
-                .doOnError(Throwable::printStackTrace)
+                .doOnError(throwable -> view.showError(throwable.getMessage()))
+                .onErrorReturn(throwable -> Collections.emptyList())
                 .subscribe(repositories -> {
                     Log.logger(LoggerType.LOGCAT).trace("Repositories");
 

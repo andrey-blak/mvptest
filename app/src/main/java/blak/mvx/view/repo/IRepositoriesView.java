@@ -8,4 +8,5 @@ public interface IRepositoriesView {
     void onLoadingStarted();
     void onLoadingFinished();
     void showRepositories(List<Repository> repositories);
+    void showError(String message);
 }

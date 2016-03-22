@@ -1,6 +1,7 @@
 package blak.mvx.view.repo;
 
 import blak.android.library.util.ViewUtils;
+import blak.mvx.App;
 import blak.mvx.R;
 import blak.mvx.model.dto.Repository;
 import blak.mvx.presenter.repo.IRepositoriesPresenter;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -71,6 +73,11 @@ public class RepositoriesFragment extends Fragment implements IRepositoriesView 
     public void showRepositories(List<Repository> repositories) {
         adapter.setItems(repositories);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(App.getInstance(), message, Toast.LENGTH_SHORT).show();
     }
 
     private void initGui() {
