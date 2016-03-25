@@ -5,7 +5,6 @@ import blak.mvx.App;
 import blak.mvx.R;
 import blak.mvx.model.dto.Repository;
 import blak.mvx.presenter.repo.IRepositoriesPresenter;
-import blak.mvx.presenter.repo.RepositoriesPresenter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -37,13 +36,19 @@ public class RepositoriesFragment extends Fragment implements IRepositoriesView 
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter = App.getComponent().getRepositoriesPresenter();
+        presenter.attachView(this);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mvx__repositories, container, false);
         ButterKnife.bind(this, view);
         initGui();
-        initPresenter();
         return view;
     }
 
@@ -83,10 +88,5 @@ public class RepositoriesFragment extends Fragment implements IRepositoriesView 
     private void initGui() {
         adapter = new RepositoryAdapter();
         repositoriesListView.setAdapter(adapter);
-    }
-
-    private void initPresenter() {
-        presenter = new RepositoriesPresenter();
-        presenter.attachView(this);
     }
 }

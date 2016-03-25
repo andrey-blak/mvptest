@@ -35,10 +35,7 @@ public class RepositoriesPresenterTest extends BaseTest {
     public void testLoadRepositories() {
         Repository[] repositories = {new Repository(), new Repository()};
         List<Repository> repositoriesList = Arrays.asList(repositories);
-        Observable<List<Repository>> observable = Observable.just(repositoriesList);
-
-        Mockito.when(model.getRepositories(Matchers.anyString()))
-                .thenReturn(observable);
+        mockModel(model, Matchers.anyString(), repositories);
 
         InOrder inOrder = Mockito.inOrder(model, view);
 
