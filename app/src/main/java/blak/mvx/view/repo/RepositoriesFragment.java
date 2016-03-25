@@ -48,6 +48,7 @@ public class RepositoriesFragment extends Fragment implements IRepositoriesView 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mvx__repositories, container, false);
         ButterKnife.bind(this, view);
+        presenter.restoreState(savedInstanceState);
         initGui();
         return view;
     }
@@ -55,7 +56,20 @@ public class RepositoriesFragment extends Fragment implements IRepositoriesView 
     @Override
     public void onStart() {
         super.onStart();
+        presenter.onStart();
         presenter.loadRepositories();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.onStop();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        presenter.saveState(outState);
     }
 
     @Override

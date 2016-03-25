@@ -9,6 +9,8 @@ import blak.mvx.model.IModel;
 import blak.mvx.model.dto.Repository;
 import blak.mvx.view.repo.IRepositoriesView;
 
+import android.os.Bundle;
+
 import java.util.Collections;
 
 public class RepositoriesPresenter implements IRepositoriesPresenter {
@@ -24,6 +26,22 @@ public class RepositoriesPresenter implements IRepositoriesPresenter {
     @Override
     public void detachView() {
         view = null;
+    }
+
+    @Override
+    public void onStart() {
+    }
+
+    @Override
+    public void onStop() {
+    }
+
+    @Override
+    public void saveState(Bundle bundle) {
+    }
+
+    @Override
+    public void restoreState(Bundle bundle) {
     }
 
     @Override
