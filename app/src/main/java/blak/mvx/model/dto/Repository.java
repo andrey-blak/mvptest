@@ -27,4 +27,16 @@ public class Repository {
     @SerializedName("description")
     @Expose
     public String description;
+
+    public Repository() {
+    }
+
+    public Repository(int id, String name, String fulName, Owner owner, boolean isPrivate, String description) {
+        this.id = id;
+        this.name = name;
+        this.fulName = fulName;
+        this.owner = owner;
+        this.isPrivate = isPrivate;
+        this.description = description;
+    }
 }

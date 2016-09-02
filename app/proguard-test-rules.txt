@@ -16,3 +16,6 @@
 -dontwarn sun.misc.**
 
 -dontwarn com.squareup.**
+
+# Mockito
+-dontwarn org.mockito.**

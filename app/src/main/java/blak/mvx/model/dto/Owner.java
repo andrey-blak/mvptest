@@ -15,4 +15,13 @@ public class Owner {
     @SerializedName("avatar_url")
     @Expose
     public String avatarUrl;
+
+    public Owner() {
+    }
+
+    public Owner(int id, String login, String avatarUrl) {
+        this.id = id;
+        this.login = login;
+        this.avatarUrl = avatarUrl;
+    }
 }

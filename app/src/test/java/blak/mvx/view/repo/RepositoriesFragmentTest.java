@@ -2,6 +2,7 @@ package blak.mvx.view.repo;
 
 import blak.mvx.BaseTest;
 import blak.mvx.R;
+import blak.mvx.TestUtils;
 import blak.mvx.activities.MainActivity;
 import blak.mvx.model.IModel;
 import blak.mvx.model.dto.Repository;
@@ -30,7 +31,7 @@ public class RepositoriesFragmentTest extends BaseTest {
 
         model = component.getModel();
         presenter = component.getRepositoriesPresenter();
-        mockModel(model, Matchers.anyString(), new Repository(), new Repository());
+        TestUtils.mockModel(model, Matchers.anyString(), new Repository(), new Repository());
         bundle = Bundle.EMPTY;
 
         activity = Robolectric.setupActivity(MainActivity.class);

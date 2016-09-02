@@ -14,8 +14,6 @@ import android.os.Bundle;
 import java.util.Collections;
 
 public class RepositoriesPresenter implements IRepositoriesPresenter {
-    private static final String USER = "andrey-blak";
-
     private IRepositoriesView view;
 
     @Override
@@ -45,12 +43,12 @@ public class RepositoriesPresenter implements IRepositoriesPresenter {
     }
 
     @Override
-    public void loadRepositories() {
+    public void loadRepositories(String username) {
         view.onLoadingStarted();
 
         MainComponent component = App.getComponent();
         IModel model = component.getModel();
-        model.getRepositories(USER)
+        model.getRepositories(username)
                 .compose(RxUtils.observableTransformer())
                 .doOnError(throwable -> view.showError(throwable.getMessage()))
                 .onErrorReturn(throwable -> Collections.emptyList())

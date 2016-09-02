@@ -11,15 +11,25 @@ import butterknife.ButterKnife;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
 
 public class RepositoriesFragment extends Fragment implements IRepositoriesView {
+    private static final String DEFAULT_USER = "andrey-blak";
+
+    @Bind(R.id.mvx__repositories_user_edit)
+    EditText userNameEdit;
+
+    @Bind(R.id.mvx__repositories_load_button)
+    View loadButton;
+
     @Bind(R.id.mvx__repositories_list)
     ListView repositoriesListView;
 
@@ -50,6 +60,7 @@ public class RepositoriesFragment extends Fragment implements IRepositoriesView 
         ButterKnife.bind(this, view);
         presenter.restoreState(savedInstanceState);
         initGui();
+        initListeners();
         return view;
     }
 
@@ -57,7 +68,6 @@ public class RepositoriesFragment extends Fragment implements IRepositoriesView 
     public void onStart() {
         super.onStart();
         presenter.onStart();
-        presenter.loadRepositories();
     }
 
     @Override
@@ -102,5 +112,15 @@ public class RepositoriesFragment extends Fragment implements IRepositoriesView 
     private void initGui() {
         adapter = new RepositoryAdapter();
         repositoriesListView.setAdapter(adapter);
+    }
+
+    private void initListeners() {
+        loadButton.setOnClickListener((View v) -> {
+            String username = userNameEdit.getText().toString();
+            if (TextUtils.isEmpty(username)) {
+                username = DEFAULT_USER;
+            }
+            presenter.loadRepositories(username);
+        });
     }
 }

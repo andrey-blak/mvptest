@@ -41,3 +41,6 @@
 
 ## Logback
 -dontwarn ch.qos.logback.core.net.*
+
+## Dto
+-keep class blak.mvx.model.dto.** { *; }
