@@ -1,7 +1,7 @@
 package blak.android.library.log;
 
 public enum LoggerType {
-    LOGCAT(Pattern.TRACE);
+    MVP(Pattern.TRACE);
 
     private final Pattern mPattern;
 

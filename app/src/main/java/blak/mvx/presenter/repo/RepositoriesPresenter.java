@@ -53,10 +53,10 @@ public class RepositoriesPresenter implements IRepositoriesPresenter {
                 .doOnError(throwable -> view.showError(throwable.getMessage()))
                 .onErrorReturn(throwable -> Collections.emptyList())
                 .subscribe(repositories -> {
-                    Log.logger(LoggerType.LOGCAT).trace("Repositories");
+                    Log.logger(LoggerType.MVP).trace("Repositories");
 
                     for (Repository repository : repositories) {
-                        Log.logger(LoggerType.LOGCAT).trace("{}", repository.fulName);
+                        Log.logger(LoggerType.MVP).trace("{}", repository.fulName);
                     }
 
                     view.onLoadingFinished();
