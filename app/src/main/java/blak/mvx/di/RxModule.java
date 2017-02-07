@@ -19,7 +19,6 @@ public class RxModule {
         return AndroidSchedulers.mainThread();
     }
 
-
     @Provides
     @Singleton
     @Named(Constants.SCHEDULER_IO)

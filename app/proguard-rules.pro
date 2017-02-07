@@ -38,6 +38,9 @@
 
 ## RxAndroid
 -dontwarn sun.misc.Unsafe
+-keep class rx.schedulers.Schedulers {
+    public static <methods>;
+}
 
 ## Logback
 -dontwarn ch.qos.logback.core.net.*
