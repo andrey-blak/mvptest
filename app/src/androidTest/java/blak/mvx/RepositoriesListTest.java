@@ -52,12 +52,7 @@ public class RepositoriesListTest {
 
         Espresso.onData(CoreMatchers.anything())
                 .inAdapterView(ViewMatchers.withId(R.id.mvx__repositories_list))
-                .atPosition(0)
-                .check(ViewAssertions.matches(ViewMatchers.hasDescendant(ViewMatchers.withText("user/hello"))));
-
-        Espresso.onData(CoreMatchers.anything())
-                .inAdapterView(ViewMatchers.withId(R.id.mvx__repositories_list))
-                .atPosition(0)
-                .check(ViewAssertions.matches(ViewMatchers.hasDescendant(ViewMatchers.withText("user/goodbye"))));
+                .atPosition(1)
+                .check(ViewAssertions.matches(ViewMatchers.withText("user/goodbye")));
     }
 }
